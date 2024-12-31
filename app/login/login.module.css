@@ -1,0 +1,37 @@
+.wrapper{
+  border-radius:8px;
+  position:absolute;
+  display:flex;
+  overflow:hidden;
+  height: 408px;
+  width: 408px;
+  justify-content: center;
+  padding-top:16px;
+  align-items: center;
+  --tw-bg-opacity: 2;
+  
+  /*background-color: rgb(44 232 198 / var(--tw-bg-opacity)) /* #48ecce 112 26 117*/;
+
+  
+}
+.wrapper::after {
+  background: conic-gradient( rgb(6, 116, 258) 40deg, transparent 25deg);
+  position:absolute;
+  height: 170%;
+  width: 170%;
+  animation: border-spin 9s linear infinite;
+  --tw-content: '';
+  content: var(--tw-content);
+  z-index:-50;
+  filter:blur(4px)
+  
+  
+  }
+@keyframes border-spin {
+  100% {
+    transform: rotate(-360deg);
+
+    
+  }
+}
+

@@ -1,14 +1,14 @@
 "use server";
 import { MongoClient } from "mongodb";
 import bcrypt from 'bcrypt';
-import { NextResponse } from "next/server";
+import { NextResponse , NextRequest} from "next/server";
 
-export const POST = async (NextRequest: { json: () => any }) => {
+export const POST = async (request: NextRequest) => {
   const url: any =
     "mongodb+srv://owaisabdullah:jNdqBbZzvdylpKiA@uroosamongodb.icxudte.mongodb.net/";
   const client = new MongoClient(url);
   try {
-    const body = await NextRequest.json();
+    const body = await request.json();
     const data = body;
     //console.log(data);
     console.log(data.Password.password);

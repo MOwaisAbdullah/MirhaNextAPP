@@ -1,13 +1,13 @@
 "use server";
 import { MongoClient } from "mongodb";
+import { NextRequest } from 'next/server';
 import bcrypt from 'bcrypt';
 
-export const POST = async (NextRequest: { json: () => any }) => {
-  const url =
-    "mongodb+srv://owaisabdullah:jNdqBbZzvdylpKiA@uroosamongodb.icxudte.mongodb.net/";
+export const POST = async (request:NextRequest): Promise<Response>=> {
+  const url ="mongodb+srv://owaisabdullah:jNdqBbZzvdylpKiA@uroosamongodb.icxudte.mongodb.net/";
   const client = new MongoClient(url);
   try {
-    const body = await NextRequest.json();
+    const body = await request.json();
     const { name, username, password } = body;
     let date = Date();
     await client.connect();
@@ -43,7 +43,7 @@ export const POST = async (NextRequest: { json: () => any }) => {
         { status: 401 }
       );
   } catch (error) {
-    return error;
+    return new Response("An error occurred while processing your request.", { status: 500 });
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();

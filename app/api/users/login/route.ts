@@ -1,17 +1,17 @@
 "use server";
 import { MongoClient, ReturnDocument } from "mongodb";
-import { NextResponse } from "next/server";
+import { NextResponse , NextRequest} from "next/server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 
-export const POST = async (NextRequest: { json: () => any }) => {
+export const POST = async (request:NextRequest) => {
   let key: any = new TextEncoder().encode(process.env.JWT_SECRET);
   const url =
     "mongodb+srv://owaisabdullah:jNdqBbZzvdylpKiA@uroosamongodb.icxudte.mongodb.net/";
   const client = new MongoClient(url);
   try {
-    const body = await NextRequest.json();
+    const body = await request.json();
     const { username, password} = body;
     await client.connect();
     console.log("Connected successfully to MongoDB server");

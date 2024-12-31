@@ -6,8 +6,7 @@ import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from 'next/server';
 
-export const POST = async (request: NextRequest): Promise<Response> =>
-  
+export const POST = async (request: NextRequest) => 
 {
   const pwdResetKey: any = new TextEncoder().encode(process.env.JWT_SECRET_PWDRESET);
   const url =  "mongodb+srv://owaisabdullah:jNdqBbZzvdylpKiA@uroosamongodb.icxudte.mongodb.net/";

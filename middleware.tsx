@@ -16,6 +16,7 @@ export async function middleware(request: NextRequest) {
     try {
       const verified_jwt = await jwtVerify(tokenauthen, key)
       console.log(verified_jwt)
+      return 
     }
     catch (error) {
       console.log(error)

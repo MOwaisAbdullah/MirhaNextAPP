@@ -50,7 +50,7 @@ export const POST = async (request:NextRequest) => {
             maxAge: 360,
             secure: true,
           });
-       return new NextResponse("login sucessfull", { status: 200 })
+       return new NextResponse("login successfull", { status: 200 })
       }
       else{return new NextResponse("Invalid Password", { status: 400 })} 
          

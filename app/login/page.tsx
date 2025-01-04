@@ -44,7 +44,7 @@ export default function Loginpage() {
       const response = await axios.post("api/users/login", data);
       console.log(response);
       if (response.status === 200) {
-        router.replace("/womens");
+        router.push("/womens");
       }
     } catch (error: any) {
       console.log(error);

@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
       console.log(verified_jwt)
 <<<<<<< HEAD
       return 
-=======
+
       return NextResponse.redirect(new URL("/womens", request.url))
 >>>>>>> 9ffb40e95b52ac70f9469e7243d47efd402ce1fe
     }

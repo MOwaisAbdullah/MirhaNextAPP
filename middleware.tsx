@@ -16,6 +16,7 @@ export async function middleware(request: NextRequest) {
     try {
       const verified_jwt = await jwtVerify(tokenauthen, key)
       console.log(verified_jwt)
+      return NextResponse.redirect(new URL("/womens", request.url))
     }
     catch (error) {
       console.log(error)

@@ -6,8 +6,11 @@ import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from 'next/server';
 
+
+
 export const POST = async (request: NextRequest) => 
 {
+  
   const pwdResetKey: any = new TextEncoder().encode(process.env.JWT_SECRET_PWDRESET);
   const url =  "mongodb+srv://owaisabdullah:jNdqBbZzvdylpKiA@uroosamongodb.icxudte.mongodb.net/";
   const client = new MongoClient(url);
@@ -76,7 +79,7 @@ export const POST = async (request: NextRequest) =>
           text: "Password Reset Request for Mirha Collection in plain text body", // plain text body
           html: `<h2>Dear User!</h2>
            <h3><p>Please click on below mentioned Password Reset link to reset your password.</p></h3>
-          <br><link> http://localhost:3000/resetPassword/${nano_token}</link></br>
+          <br><link> ${request.nextUrl.origin}/resetPassword/${nano_token}</link></br>
           <br><p>Regards,<h3>Mirha Collection</h3></p></br>`, // htmlbody
         });
 

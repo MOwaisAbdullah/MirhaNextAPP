@@ -53,10 +53,22 @@ export default function ResetPass() {
   const handleResetPassword = async (e: { preventDefault: any }) => {
     e.preventDefault();
     if (!Password.password || !Password.confirmPassword) {
-      return alert("Please enter Password and Confirm Password to reset");
+      toast({
+        variant: "destructive",
+        title: "Mandatory Fields Are Empty.",
+        description: "Please enter Password and Confirm Password to reset.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
+      return alert("Please enter Password and Confirm Password to reset.");
     }
     if (Password.password !== Password.confirmPassword) {
-      return alert("Password and Confirm Password 'Mismatch");
+      toast({
+        variant: "destructive",
+        title: "Mismatched Passwords.",
+        description: "Password and Confirm Password are Mismatch!",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
+      return alert("Password and Confirm Password are Mismatch!");
     }
 
     const pass_pattern = new RegExp(
@@ -66,7 +78,15 @@ export default function ResetPass() {
     console.log('hello',pass_result);
 
     //Password Validation
-        if (!pass_result === true) {return alert("Password must be of atleast eight chararters");} 
+        if (!pass_result === true) {
+          toast({
+            variant: "destructive",
+            title: "Strong Password Required!!",
+            description: "Password must be of atleast EIGHT characters.",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          })
+          return alert("Password must be of atleast EIGHT chararters.");
+        } 
         if (pass_result === true) {
     try {
       const response = await axios.post("/api/users/resetpassword", b);

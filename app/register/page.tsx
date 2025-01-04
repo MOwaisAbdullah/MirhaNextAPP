@@ -47,11 +47,11 @@ export default function App() {
     if (!data.name || !data.username || !data.password) {
       toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
+        title: "All Fields Are Mandatory.",
         description: "Please fill all fields.",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       })
-      return alert("Please fill all fields");
+      return alert("Please fill all fields.");
      
     }
 
@@ -67,7 +67,13 @@ export default function App() {
 
     //Password Validation
     if (!pass_result === true) {
-      return alert("Password must be of atleast eight chararters");
+      toast({
+        variant: "destructive",
+        title: "Weak Password!!!",
+        description: "Please enter a STRONG PASSWORD.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
+      return alert("Password must be of atleast EIGHT characters. \nIt must contains one: \n\t NUMERIC Digit. \n\t UPPER Character. \n\t LOWER Character. \n\t ALPHA NUMERIC Character.");
     }
 
     console.log(data);
@@ -148,6 +154,7 @@ export default function App() {
               autoComplete="off"
               onChange={handleChange}
               placeholder="Enter Password"
+              title={"Password must be of EIGHT characters. \nIt must contains one: \n\tNUMERIC digit. \n\tUPPER Character. \n\tLOWER Character. \n\tALPHA NUMERIC Character."}
               className="w-full p-2 border border-mypeach rounded font-sans text-mypurple  font-semibold focus:outline-none focus:border-mypurple focus:bg-mypeach"
             ></input>
             

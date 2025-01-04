@@ -1,14 +1,16 @@
 "use client";
 import  styles  from "@/app/login/login.module.css";
-import Link from 'next/link'
+import Link from 'next/link';
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 import {useState}  from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import wild from '@/public/images/wildlife.jpg';
-import Image from 'next/image';
+
 
 export default function Loginpage() {
   const router = useRouter();
+  const { toast } = useToast();
 
   let login_default_data = {
     username: "",
@@ -36,7 +38,27 @@ export default function Loginpage() {
     e.preventDefault();
 
     if (!data.username || !data.password) {
+       toast({
+        variant: "destructive",
+        title: "All Fields Are Mandatory.",
+        description: "Please fill all fields.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
       return alert("Please Input Login And Passoword");
+    }
+
+    const pass_pattern = new RegExp(
+      "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!$%^&*.@]){8,}"
+    );
+    let pass_result = pass_pattern.test(data.password);
+    if (!pass_result === true) {
+      toast({
+        variant: "destructive",
+        title: "Weak Password!!!",
+        description: "Please enter a STRONG PASSWORD.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
+      return alert("Password must be of atleast EIGHT characters. \nIt must contains one: \n\t NUMERIC Digit. \n\t UPPER Character. \n\t LOWER Character. \n\t ALPHA NUMERIC Character.");
     }
     console.log(data);
     setisButtonDisabled(true)
